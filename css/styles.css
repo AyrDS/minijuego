@@ -1,0 +1,677 @@
+:root {
+    --main-bg: rgb(242, 249, 254);
+    --main-color: #004F87;
+}
+
+@font-face {
+    font-family: 'FreePixel';
+    src: url('../assets/fonts/FreePixel.ttf');
+}
+
+@font-face {
+    font-family: 'RetroGaming';
+    src: url('../assets/fonts/RetroGaming.ttf');
+}
+
+body {
+    background-color: var(--main-bg);
+    font-family: 'FreePixel';
+    color: var(--main-color);
+}
+
+.no-selectImg {
+    -user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* -------- INICIO PAGINA INICIO ------------ */
+
+a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.main-container {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    align-items: center;
+}
+
+.logo {
+    width: 50vw;
+    padding-top: 25px;
+}
+
+.p-title {
+    font-size: 20px;
+}
+
+.manPlayerLabel {
+    background-image: url('../assets/hombreGris.png');
+}
+
+.womanPlayerLabel {
+    background-image: url('../assets/mujerGris.png');
+}
+
+.manPlayerLabel,
+.womanPlayerLabel {
+    cursor: pointer;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 45vw;
+    height: 45vw;
+}
+
+.manPlayerInput,
+.womanPlayerInput {
+    display: none;
+}
+
+.manPlayerLabel.manSelect {
+    background-image: url('../assets/hombreColor.png');
+}
+
+.womanPlayerLabel.womanSelect {
+    background-image: url('../assets/mujerColor.png');
+}
+
+.input-name {
+    border: 2px solid #038bdd;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.input-name::placeholder {
+    text-align: center;
+}
+
+.input-name:focus {
+    outline: none;
+}
+
+.cartel-home {
+    width: 75%;
+}
+
+.btn-init {
+    background-color: #434440;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 5px;
+    width: 100px;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.btn-init:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* -------- FIN PAGINA INICIO ------------ */
+
+
+
+/* --------- INICIO GAME --------- */
+.game-container {
+    height: 50vh;
+    width: 95vw;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+.timer {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    border: 1px solid #038bdd;
+    border-radius: 3px;
+    font-family: 'RetroGaming';
+    width: 70px;
+}
+
+.text-game {
+    position: absolute;
+    top: 24%;
+    left: 35%;
+}
+
+.text-game p {
+    text-align: center;
+    font-size: 13px;
+    margin: 0;
+}
+
+.name {
+    position: absolute;
+    right: 10px;
+    top: 10px
+}
+
+.container-game-logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.game-logo {
+    width: 100px;
+}
+
+.instruction {
+    position: absolute;
+    top: 45%;
+    left: 15%;
+}
+
+.instruction p {
+    font-size: 14px;
+}
+
+.player {
+    width: 60px;
+    height: 80px;
+    position: absolute;
+    z-index: 2;
+    bottom: 6px;
+    left: 0;
+}
+
+.player.man {
+    background: url('/assets/idle-man.png');
+    background-size: cover;
+}
+
+.player.man.run {
+    background: url('/assets/sprite-man-mobile.png');
+    background-size: cover;
+    animation: run 0.8s steps(4) infinite;
+}
+
+.player.man.jump {
+    background: url('/assets/jump-man.png');
+    background-size: cover;
+}
+
+.player.woman {
+    background: url('/assets/idle-woman.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.player.woman.run {
+    background: url('/assets/sprite-woman-mobile.png');
+    background-size: cover;
+    animation: run 0.8s steps(4) infinite;
+}
+
+.player.woman.jump {
+    background: url('/assets/jump-woman.png');
+    background-size: cover;
+}
+
+.window {
+    width: 50px;
+    height: 50px;
+    top: 25vh;
+
+    position: absolute;
+    z-index: -1;
+    background: url('/assets/window.png') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.ground {
+    width: 200%;
+    height: 20px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url('../../assets/ground.png');
+    background-size: 50% 20px;
+}
+
+.obstacle {
+    width: 45px;
+    height: 45px;
+
+    position: absolute;
+    bottom: 9px;
+    left: 200px;
+    z-index: 1;
+}
+
+.object {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    bottom: 100px;
+    left: 200px;
+    z-index: 1;
+}
+
+.obstacle.obstacle-1 {
+    background: url('../assets/peligro-4.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.obstacle.obstacle-2 {
+    background: url('../assets/peligro-1.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.obstacle.obstacle-3 {
+    width: 60px;
+    height: 38px;
+    background: url('../assets/peligro-2.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.obstacle.obstacle-4 {
+    bottom: 120px;
+    width: 150px;
+    height: 83px;
+    background: url('../assets/peligro-3.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.inside {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    bottom: 0;
+    left: 20%;
+}
+
+.inside.obj4 {
+    width: 100%;
+    left: 0%;
+}
+
+.object.object-1 {
+    background: url('../assets/proteccion-4.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.object.object-2 {
+    background: url('../assets/proteccion-1.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.object.object-3 {
+    background: url('../assets/proteccion-2.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.object.object-4 {
+    bottom: 40px;
+    background: url('../assets/proteccion-3.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.out {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.game-out {
+    width: 75px;
+    cursor: pointer;
+}
+
+.fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(83, 87, 88, .8);
+    backdrop-filter: blur(2px);
+    z-index: 10;
+    color: red;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.image-modal {
+    width: 85vw;
+}
+
+.image-modal_touch {
+    width: 70vw;
+}
+
+.game-over {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    align-items: center;
+}
+
+.subFinal {
+    font-size: 14px;
+}
+
+.final-img {
+    width: 65vw;
+}
+
+.cartel-final {
+    width: 80%;
+}
+
+.btn-container {
+    cursor: pointer;
+}
+
+.btn-container p {
+    font-size: 12px;
+    text-align: center;
+}
+
+.btn-final {
+    width: 40px;
+    height: 40px;
+}
+
+@keyframes run {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -240px;
+    }
+}
+
+@keyframes runWeb {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -360px;
+    }
+}
+
+/* ---------- FIN GAME ------- */
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+
+    margin: 100px auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+    0% {
+        -webkit-transform: perspective(120px)
+    }
+
+    50% {
+        -webkit-transform: perspective(120px) rotateY(180deg)
+    }
+
+    100% {
+        -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+    }
+}
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    }
+
+    50% {
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    }
+
+    100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
+
+@media (min-width: 540px) {
+
+    .manPlayerLabel,
+    .womanPlayerLabel {
+        width: 30vw;
+        height: 30vw;
+    }
+
+    .text-game {
+        top: 23%;
+        left: 37%;
+    }
+}
+
+@media (min-width: 600px) {
+    .logo {
+        width: 35vw;
+    }
+}
+
+@media (min-width: 600px) {
+    .cartel-home {
+        width: 60%;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo {
+        width: 30vw;
+    }
+
+    .p-title {
+        font-size: 28px;
+    }
+
+    .input-name {
+        font-size: 28px;
+    }
+
+    .cartel-home,
+    .cartel-final {
+        width: 50%;
+    }
+
+    .btn-init {
+        font-size: 28px;
+        width: 150px;
+    }
+
+    .game-container {
+        width: 75vw;
+    }
+
+    .window {
+        width: 70px;
+        height: 70px;
+    }
+
+    .player {
+        width: 90px;
+        height: 110px;
+        bottom: 9px;
+        bottom: 3px;
+    }
+
+    .player.man.run {
+        background: url('/assets/sprite-man-web.png');
+        animation: runWeb 0.8s steps(4) infinite;
+        background-size: cover;
+    }
+
+    .player.woman.run {
+        background: url('/assets/sprite-woman-web.png');
+        animation: runWeb 0.8s steps(4) infinite;
+        background-size: cover;
+    }
+
+    .object,
+    .obstacle {
+        width: 60px;
+        height: 60px;
+        left: 600px;
+    }
+
+    .object {
+        bottom: 150px;
+    }
+
+    .obstacle.obstacle-4 {
+        bottom: 150px;
+    }
+
+    .subFinal {
+        font-size: 20px;
+    }
+
+    .final-img {
+        width: 35vw;
+    }
+
+    .btn-final {
+        width: 50px;
+        height: 50px;
+    }
+
+    .instruction p {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 900px) {
+
+    .manPlayerLabel,
+    .womanPlayerLabel {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .text-game {
+        top: 23%;
+    }
+
+    .text-game p {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 950px) {
+    .p-title {
+        font-size: 32px;
+    }
+
+    .image-modal {
+        width: 55vw;
+    }
+
+    .image-modal_touch {
+        width: 45vw;
+    }
+}
+
+@media (min-width: 1100px) {
+    .logo {
+        width: 20vw;
+    }
+
+    .game-container {
+        width: 50vw;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .cartel-home,
+    .cartel-final {
+        width: 25%;
+    }
+
+    .image-modal {
+        width: 25vw;
+    }
+
+    .image-modal_touch {
+        width: 15vw;
+    }
+
+    .final-img {
+        width: 20vw;
+    }
+
+    .game-out {
+        width: 125px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .logo {
+        width: 15vw;
+    }
+
+    .btn-final {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .text-game {
+        top: 22%;
+    }
+}
+
+@media (min-width: 1900px) {
+    .logo {
+        width: 12.5vw;
+    }
+}
